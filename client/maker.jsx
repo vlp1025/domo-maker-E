@@ -7,13 +7,15 @@ const handleDomo = (e) => {
     const name = e.target.querySelector('#domoName').value;
     const age = e.target.querySelector('#domoAge').value;
     const _csrf = e.target.querySelector('#_csrf').value;
+    const health = e.target.querySelector('#domoHealth').value;
+
 
     if (!name || !age) {
         helper.handleError('All fields are required!');
         return false;
     }
 
-    helper.sendPost(e.target.action, {name, age, _csrf}, loadDomosFromServer);
+    helper.sendPost(e.target.action, {name, age, health, _csrf}, loadDomosFromServer);
 
     return false;
 };
@@ -31,6 +33,8 @@ const DomoForm = (props) => {
             <input type="text" id="domoName" name="name" placeholder="Domo Name" />
             <label htmlFor="age">Age: </label>
             <input type="number" id="domoAge" name="age" min="0" />
+            <label htmlFor="health">Health: </label>
+            <input type="number" id="domoHealth" name="health" min="0" max="10"/> 
             <input type="hidden" id="_csrf" name="_csrf" value={props.csrf} />
             <input className="makeDomoSubmit" type="submit" value="Make Domo" />
         </form>
@@ -52,6 +56,7 @@ const DomoList = (props) => {
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className='domoFace' />
                 <h3 className='domoName'>Name: {domo.name} </h3>
                 <h3 className='domoAge'>Age: {domo.age} </h3>
+                <h3 className='domoHealth'>Health: {domo.health} </h3>
             </div>
         );
     });
