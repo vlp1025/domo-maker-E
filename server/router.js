@@ -1,5 +1,7 @@
 const controllers = require('./controllers');
 const mid = require('./middleware');
+const file = require('./controllers/files.js');
+
 
 const router = (app) => {
   app.get('/getToken', mid.requiresSecure, controllers.Account.getToken);
@@ -16,6 +18,12 @@ const router = (app) => {
   app.post('/maker', mid.requiresLogin, controllers.Domo.makeDomo);
 
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
+
+  app.post('/upload', file.uploadFile);
+  app.get('/retrieve', file.retrieveFile);
+
+  // app.get('/', file.uploadPage);
+
 };
 
 module.exports = router;

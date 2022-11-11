@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const path = require('path');
 const express = require('express');
 const compression = require('compression');
@@ -11,6 +13,8 @@ const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const redis = require('redis');
 const csrf = require('csurf');
+const fileUpload = require('express-fileupload');
+
 
 const router = require('./router.js');
 
@@ -35,6 +39,9 @@ redisClient.connect().catch(console.error);
 
 const app = express();
 
+
+
+app.use(fileUpload());
 app.use(helmet({
   crossOriginEmbedderPolicy: false,
   contentSecurityPolicy: false,

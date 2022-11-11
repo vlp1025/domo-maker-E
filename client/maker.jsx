@@ -15,13 +15,13 @@ const handleDomo = (e) => {
         return false;
     }
 
-    helper.sendPost(e.target.action, {name, age, health, _csrf}, loadDomosFromServer);
+    helper.sendPost(e.target.action, { name, age, health, _csrf }, loadDomosFromServer);
 
     return false;
 };
 
 const DomoForm = (props) => {
-    return ( 
+    return (
         <form id="domoForm"
             onSubmit={handleDomo}
             name="domoForm"
@@ -34,10 +34,35 @@ const DomoForm = (props) => {
             <label htmlFor="age">Age: </label>
             <input type="number" id="domoAge" name="age" min="0" />
             <label htmlFor="health">Health: </label>
-            <input type="number" id="domoHealth" name="health" min="0" max="10"/> 
+            <input type="number" id="domoHealth" name="health" min="0" max="10" />
             <input type="hidden" id="_csrf" name="_csrf" value={props.csrf} />
             <input className="makeDomoSubmit" type="submit" value="Make Domo" />
+
+{/* 
+            <form ref='uploadForm'
+                id='uploadForm'
+                action='/upload'
+                method='post'
+                encType="multipart/form-data">
+                <input type="file" name="sampleFile" />
+                <input type='submit' value='Upload!' />
+            </form>
+
+            <form ref='retrieveForm'
+                id='retrieveForm'
+                action='/retrieve'
+                method='get'>
+                <label for='fileName'>Retrieve File By ID: </label>
+                <input name='_id' type='text' />
+                <input type='submit' value='Retrieve!' />
+            </form>
+
+            <section id="messages"></section> */}
+
+
         </form>
+
+
     );
 };
 
